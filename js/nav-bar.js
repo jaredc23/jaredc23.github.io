@@ -4,15 +4,6 @@ const currCanvas = document.getElementById('nav-canvas'),
       computedStyleValueSpan = document.getElementById('computedstylevalue');
 const computedStyleObj = getComputedStyle(currCanvas);
 
-window.onresize = reportWindowSize;
-const heightOutput = document.querySelector('#height');
-const widthOutput = document.querySelector('#width');
-function reportWindowSize() {
-  heightOutput.textContent = window.innerHeight;
-  widthOutput.textContent = window.innerWidth;
-  document.getElementById('nav-canvas').width = "100%";
-}
-
 window.onscroll = function() {scrollFunction()};
 function scrollFunction() {
     if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
@@ -68,12 +59,17 @@ function map(x, in_min, in_max, out_min, out_max) {
 }
 
 function draw() {
+
+  ctx.width  = window.innerWidth;
+  ctx.height = window.innerHeight;
+
   var width = document.getElementById('nav-canvas').width;
   var height = document.getElementById('nav-canvas').height;
 
   ctx.globalCompositeOperation = 'destination-over';
   ctx.clearRect(0, 0, width, height); // clear canvas
 
+  ctx.lineWidth = 200;
   ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
   ctx.strokeStyle = 'rgba(0, 153, 255, 0.4)';
   ctx.save();
@@ -83,11 +79,11 @@ function draw() {
   ctx.strokeStyle = 'rgba(0, 153, 255, 1)';
 
   ctx.beginPath();
-  ctx.arc(0, 0, 20, 0, 2 * Math.PI);
-  ctx.moveTo(0,-20);
-  ctx.lineTo(0,20);
-  ctx.moveTo(-20,0);
-  ctx.lineTo(20,0);
+  ctx.arc(0, 0, 70, 0, 2 * Math.PI);
+  ctx.moveTo(0,-70);
+  ctx.lineTo(0,70);
+  ctx.moveTo(-70,0);
+  ctx.lineTo(70,0);
   ctx.stroke();
   ctx.fillRect(0,0,width,parseInt(computedStyleObj.height));
 
