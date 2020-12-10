@@ -80,7 +80,7 @@ body{
 #navBar a.active
 {
     background-color: var(--navBarSelect);
-    color: var(--black);
+    /*color: var(--black);*/
 }
 
 @media screen and (max-width: 580px) {
