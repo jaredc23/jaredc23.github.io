@@ -1,61 +1,95 @@
 :root{
+    --black: #000000;
     --green: #00FF00;
     --white: #FFFFFF;
     --black: #000000;
+    --bgGrey: #F5F5F5;
+    --navBarColor: #414141;
+    --navTextColor: #F2F2F2;
+    --navBarHover: #DBDBDB;
+    --navBarSelect: var(--green);
 }
 
 *{
     color: var(--fontColor);
-    font-family: helvetica;
+    font-family: 'Times New Roman', Times, serif;
 }
 
-.light-theme
+.main-theme
 {
-    --bg: var(--green);
+    --bg: var(--bgGrey);
     --fontColor: var(--black);
     --btnBg: var(--black);
     --btnFontColor: var(--white);
 }
 
-.dark-theme
-{
-    --bg: var(--black);
-    --fontColor: var(--green);
-    --btnBg: var(--white);
-    --btnFontColor: var(--black);
-}
-
 body{
+    margin: auto;
     background: var(--bg);
-}
-
-ul {
-    font-family: helvetica;
-}
-
-li {
-    list-style: circle;
-}
-  
-.list {
-    list-style: square;
 }
   
 #msg {
     font-family: monospace;
 }
-
-.btn
+/*--------------------------------------Navigation Bar------------------------------------------*/
+#navBar
 {
-    position: absolute;
-    top: 20px;
-    left: 250px;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    border: none;
-    color: var(--btnFontColor);
-    background-color: var(--btnBg);
+    overflow: hidden;
+    background-color: #f1f1f1;
+    padding: 80px 10px;
+    transition: 0.4s;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 99;
+    box-shadow: 0 3px 3px -2px rgba(0,0,0,.2);
+}
+#navBar a{
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-family: 'Roboto';
+    font-size: 20px; 
+    line-height: 25px;
+    border-radius: 4px;
+}
+#navBar #logo
+{
+    font: 'JetBrains Mono';
+    font-size: 60px;
+    font-weight: bold;
+    transition: 0.4s;
+}
+#navBar-right
+{
+    float: right;
+    margin-right: 20px;
+}
+#navBar a:hover
+{
+    background-color: var(--navBarHover);
+    color: var(--black);
+}
+#navBar a.active
+{
+    background-color: var(--navBarSelect);
+    color: var(--black);
 }
 
-.btn:focus{outline-style:none};
+@media screen and (max-width: 580px) {
+    #navbar {
+      padding: 20px 10px !important;
+      box-shadow: 0 10px 10px -2px rgba(0,0,0,.2);
+    }
+    #navbar a {
+      float: none;
+      display: block;
+      text-align: left;
+    }
+    #navbar-right {
+      float: none;
+    }
+  }
+/*---------------------------------------------------------------------------------------------------*/
