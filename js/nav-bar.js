@@ -1,5 +1,18 @@
 'use strict'
 
+const currCanvas = document.getElementById('nav-canvas'),
+      computedStyleValueSpan = document.getElementById('computedstylevalue');
+const computedStyleObj = getComputedStyle(currCanvas);
+
+window.onresize = reportWindowSize;
+const heightOutput = document.querySelector('#height');
+const widthOutput = document.querySelector('#width');
+function reportWindowSize() {
+  heightOutput.textContent = window.innerHeight;
+  widthOutput.textContent = window.innerWidth;
+  document.getElementById('nav-canvas').width = "100%";
+}
+
 window.onscroll = function() {scrollFunction()};
 function scrollFunction() {
     if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
@@ -7,7 +20,7 @@ function scrollFunction() {
       document.getElementById("logo").style.fontSize = "25px";
       document.getElementById("navBar").style.boxShadow = "0 20px 20px -2px rgba(0,0,0,.4)";
       document.getElementById("navBar-right").style.fontSize = "30px";
-      document.getElementById("nav-canvas").style.height = "110px";
+      document.getElementById("nav-canvas").style.height = "140px";
     } else {
       document.getElementById("navBar").style.padding = "70px 10px";
       document.getElementById("logo").style.fontSize = "60px";
@@ -57,53 +70,13 @@ function map(x, in_min, in_max, out_min, out_max) {
 function draw() {
   var width = document.getElementById('nav-canvas').width;
   var height = document.getElementById('nav-canvas').height;
-  ///var ctx = document.getElementById('nav-canvas').getContext('2d');
-  /*
-  ctx.globalCompositeOperation = 'destination-over';
-  ctx.clearRect(0, 0, 300, 300); // clear canvas
 
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
-  ctx.strokeStyle = 'rgba(0, 153, 255, 0.4)';
-  ctx.save();
-  ctx.translate(150, 150);
-
-  // Earth
-  var time = new Date();
-  ctx.rotate(((2 * Math.PI) / 60) * time.getSeconds() + ((2 * Math.PI) / 60000) * time.getMilliseconds());
-  ctx.translate(105, 0);
-  ctx.fillRect(0, -12, 40, 24); // Shadow
-  ctx.drawImage(earth, -12, -12);
-
-  // Moon
-  ctx.save();
-  ctx.rotate(((2 * Math.PI) / 6) * time.getSeconds() + ((2 * Math.PI) / 6000) * time.getMilliseconds());
-  ctx.translate(0, 28.5);
-  ctx.drawImage(moon, -3.5, -3.5);
-  ctx.restore();
-
-  ctx.restore();
-  
-  ctx.beginPath();
-  ctx.arc(150, 150, 105, 0, Math.PI * 2, false); // Earth orbit
-  ctx.stroke();
- 
-  ctx.drawImage(sun, 0, 0, 300, 300);*/
-
-  
-
-// Wall
   ctx.globalCompositeOperation = 'destination-over';
   ctx.clearRect(0, 0, width, height); // clear canvas
 
   ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
   ctx.strokeStyle = 'rgba(0, 153, 255, 0.4)';
   ctx.save();
-
-  if(document.getElementById('nav-canvas').style.height == '110px')
-  {
-    ctx.translate(0,map(parseInt(document.getElementById('nav-canvas').style.height), 110, 190, 40, 0));
-    console.log(parseInt(document.getElementById('nav-canvas').style.height));
-  }
   
   ctx.clearRect(0,0,width, height);
   ctx.fillStyle = 'rgba(0, 0, 0, 1)';
@@ -116,9 +89,11 @@ function draw() {
   ctx.moveTo(-20,0);
   ctx.lineTo(20,0);
   ctx.stroke();
+  ctx.fillRect(0,0,width,parseInt(computedStyleObj.height));
+
+
   ctx.translate(0.5, 0.5);
   ctx.restore();
-
   window.requestAnimationFrame(draw);
 }
 
