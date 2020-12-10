@@ -11,7 +11,7 @@ html{
     --navBarColor: #414141;
     --navTextColor: #F2F2F2;
     --navBarHover: #DBDBDB;
-    --navBarSelect: var(--green);
+    --navBarSelect: var(green);
 }
 
 *{
