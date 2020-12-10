@@ -33,10 +33,31 @@ function init() {
   window.requestAnimationFrame(draw);
 }
 
+let canvas = document.getElementById("nav-canvas");
+let ctx = document.getElementById('nav-canvas').getContext('2d');
+
+// get current size of the canvas
+let rect = canvas.getBoundingClientRect();
+
+// increase the actual size of our canvas
+canvas.width = rect.width * devicePixelRatio;
+canvas.height = rect.height * devicePixelRatio;
+
+// ensure all drawing operations are scaled
+ctx.scale(devicePixelRatio, devicePixelRatio);
+
+// scale everything down using CSS
+canvas.style.width = rect.width + 'px';
+canvas.style.height = rect.height + 'px';
+
+function map(x, in_min, in_max, out_min, out_max) {
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
 function draw() {
   var width = document.getElementById('nav-canvas').width;
   var height = document.getElementById('nav-canvas').height;
-  var ctx = document.getElementById('nav-canvas').getContext('2d');
+  ///var ctx = document.getElementById('nav-canvas').getContext('2d');
   /*
   ctx.globalCompositeOperation = 'destination-over';
   ctx.clearRect(0, 0, 300, 300); // clear canvas
@@ -77,12 +98,14 @@ function draw() {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
   ctx.strokeStyle = 'rgba(0, 153, 255, 0.4)';
   ctx.save();
+
+  if(document.getElementById('nav-canvas').style.height == '110px')
+  {
+    ctx.translate(0,map(parseInt(document.getElementById('nav-canvas').style.height), 110, 190, 40, 0));
+    console.log(parseInt(document.getElementById('nav-canvas').style.height));
+  }
   
   ctx.clearRect(0,0,width, height);
-  if(document.getElementById('nav-canvas').height == 190)
-    ctx.translate(0, 80);
-  else
-    ctx.translate(0, 50);
   ctx.fillStyle = 'rgba(0, 0, 0, 1)';
   ctx.strokeStyle = 'rgba(0, 153, 255, 1)';
 
