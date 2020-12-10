@@ -1,3 +1,7 @@
+html{
+    scroll-behavior: smooth;
+}
+
 :root{
     --black: #000000;
     --green: #00FF00;
@@ -12,7 +16,7 @@
 
 *{
     color: var(--fontColor);
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'JetBrains Mono', monospace;
 }
 
 .main-theme
@@ -35,7 +39,7 @@ body{
 #navBar
 {
     overflow: hidden;
-    background-color: #f1f1f1;
+    background-color: var(--navBarColor);
     padding: 80px 10px;
     transition: 0.4s;
     position: fixed;
@@ -46,18 +50,18 @@ body{
 }
 #navBar a{
     float: left;
-    color: black;
+    color: var(--navTextColor);
     text-align: center;
     padding: 12px;
     text-decoration: none;
-    font-family: 'Roboto';
-    font-size: 20px; 
+    font-family: 'Rokkitt', serif;
+    font-size: 30px; 
     line-height: 25px;
     border-radius: 4px;
 }
 #navBar #logo
 {
-    font: 'JetBrains Mono';
+    font-family: 'JetBrains Mono', monospace;
     font-size: 60px;
     font-weight: bold;
     transition: 0.4s;

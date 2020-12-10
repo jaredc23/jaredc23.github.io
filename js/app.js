@@ -5,14 +5,15 @@ function scrollFunction() {
     if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
       document.getElementById("navBar").style.padding = "30px 10px";
       document.getElementById("logo").style.fontSize = "25px";
-      document.getElementById("navBar").style.boxShadow = "0 10px 10px -2px rgba(0,0,0,.2)";
+      document.getElementById("navBar").style.boxShadow = "0 20px 20px -2px rgba(0,0,0,.2)";
+      document.getElementById("navBar-right").style.fontSize = 30;
     } else {
       document.getElementById("navBar").style.padding = "80px 10px";
       document.getElementById("logo").style.fontSize = "60px";
       document.getElementById("navBar").style.boxShadow = "0 3px 3px -2px rgba(0,0,0,.2)";
+      document.getElementById("navBar-right").style.fontSize = 50;
     }
 };
-
 
 function navBarOnClick(id)
 {
