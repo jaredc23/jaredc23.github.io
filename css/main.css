@@ -5,13 +5,14 @@ html{
 :root{
     --black: #000000;
     --green: #00FF00;
+    --darkGreen: #008000;
     --white: #FFFFFF;
     --black: #000000;
     --bgGrey: #F5F5F5;
     --navBarColor: #414141;
     --navTextColor: #F2F2F2;
     --navBarHover: #DBDBDB;
-    --navBarSelect: var(green);
+    --navBarSelect: var(--darkGreen);
 }
 
 *{
