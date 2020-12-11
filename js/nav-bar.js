@@ -11,7 +11,7 @@ function scrollFunction() {
       document.getElementById("logo").style.fontSize = "25px";
       document.getElementById("navBar").style.boxShadow = "0 20px 20px -2px rgba(0,0,0,.4)";
       document.getElementById("navBar-right").style.fontSize = "30px";
-      document.getElementById("nav-canvas").style.height = "140px";
+      document.getElementById("nav-canvas").style.height = "110px";
     } else {
       document.getElementById("navBar").style.padding = "70px 10px";
       document.getElementById("logo").style.fontSize = "60px";
@@ -30,6 +30,7 @@ function navBarOnClick(id)
 var sun = new Image();
 var moon = new Image();
 var earth = new Image();
+
 function init() {
   sun.src = 'https://mdn.mozillademos.org/files/1456/Canvas_sun.png';
   moon.src = 'https://mdn.mozillademos.org/files/1443/Canvas_moon.png';
@@ -73,20 +74,16 @@ function draw() {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
   ctx.strokeStyle = 'rgba(0, 153, 255, 0.4)';
   ctx.save();
+
+  ctx.translate(0, map(parseInt(computedStyleObj.height), 110, 190, 40,0));
   
   ctx.clearRect(0,0,width, height);
   ctx.fillStyle = 'rgba(0, 0, 0, 1)';
   ctx.strokeStyle = 'rgba(0, 153, 255, 1)';
 
-  ctx.beginPath();
-  ctx.arc(0, 0, 70, 0, 2 * Math.PI);
-  ctx.moveTo(0,-70);
-  ctx.lineTo(0,70);
-  ctx.moveTo(-70,0);
-  ctx.lineTo(70,0);
-  ctx.stroke();
+  let t = new Trace(0,0,width,height,5,"#000000", "#FFFFFF");
+  t.draw(ctx);
   ctx.fillRect(0,0,width,parseInt(computedStyleObj.height));
-
 
   ctx.translate(0.5, 0.5);
   ctx.restore();
