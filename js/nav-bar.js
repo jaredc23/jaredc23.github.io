@@ -59,6 +59,10 @@ function map(x, in_min, in_max, out_min, out_max) {
   return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
+var navWidth = document.getElementById('nav-canvas').width;
+var navHeight = document.getElementById('nav-canvas').height
+let t = new Trace(0,0,navWidth,navHeight,400,20,1,"#ffe99b", "#000000");
+
 function draw() {
 
   ctx.width  = window.innerWidth;
@@ -81,9 +85,7 @@ function draw() {
   ctx.fillStyle = 'rgba(0, 0, 0, 1)';
   ctx.strokeStyle = 'rgba(0, 153, 255, 1)';
 
-  let t = new Trace(0,0,width,height,5,"#000000", "#FFFFFF");
-  t.draw(ctx);
-  ctx.fillRect(0,0,width,parseInt(computedStyleObj.height));
+  t.drawRandom(ctx);
 
   ctx.translate(0.5, 0.5);
   ctx.restore();
