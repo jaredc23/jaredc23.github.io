@@ -17,7 +17,7 @@ class Trace
         this.traceColor = traceColor;
         this.traceSize = traceSize;
         this.circleColor = circleColor;
-        this.speed = speed*5;
+        this.speed = speed;
     }
 
     getLastPoint(i)

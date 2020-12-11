@@ -35,7 +35,7 @@ function init() {
   sun.src = 'https://mdn.mozillademos.org/files/1456/Canvas_sun.png';
   moon.src = 'https://mdn.mozillademos.org/files/1443/Canvas_moon.png';
   earth.src = 'https://mdn.mozillademos.org/files/1429/Canvas_earth.png';
-  window.requestAnimationFrame(draw);
+  //window.requestAnimationFrame(draw);
 }
 
 let canvas = document.getElementById("nav-canvas");
@@ -64,32 +64,39 @@ var navHeight = document.getElementById('nav-canvas').height
 let t = new Trace(0,0,navWidth,navHeight,400,20,1,"#ffe99b", "#000000");
 
 function draw() {
+  if(document.hasFocus)
+  {
+    ctx.width  = window.innerWidth;
+    ctx.height = window.innerHeight;
 
-  ctx.width  = window.innerWidth;
-  ctx.height = window.innerHeight;
+    var width = document.getElementById('nav-canvas').width;
+    var height = document.getElementById('nav-canvas').height;
 
-  var width = document.getElementById('nav-canvas').width;
-  var height = document.getElementById('nav-canvas').height;
+    ctx.globalCompositeOperation = 'destination-over';
+    ctx.clearRect(0, 0, width, height); // clear canvas
 
-  ctx.globalCompositeOperation = 'destination-over';
-  ctx.clearRect(0, 0, width, height); // clear canvas
+    ctx.lineWidth = 200;
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
+    ctx.strokeStyle = 'rgba(0, 153, 255, 0.4)';
+    ctx.save();
 
-  ctx.lineWidth = 200;
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
-  ctx.strokeStyle = 'rgba(0, 153, 255, 0.4)';
-  ctx.save();
+    //ctx.translate(0, map(parseInt(computedStyleObj.height), 110, 190, 40,0));
+    
+    ctx.clearRect(0,0,width, height);
+    ctx.fillStyle = 'rgba(0, 0, 0, 1)';
+    ctx.strokeStyle = 'rgba(0, 153, 255, 1)';
 
-  ctx.translate(0, map(parseInt(computedStyleObj.height), 110, 190, 40,0));
-  
-  ctx.clearRect(0,0,width, height);
-  ctx.fillStyle = 'rgba(0, 0, 0, 1)';
-  ctx.strokeStyle = 'rgba(0, 153, 255, 1)';
+    t.drawRandom(ctx);
 
-  t.drawRandom(ctx);
-
-  ctx.translate(0.5, 0.5);
-  ctx.restore();
-  window.requestAnimationFrame(draw);
+    ctx.translate(0.5, 0.5);
+    ctx.restore();
+  }
+  //window.requestAnimationFrame(draw);
 }
+
+setInterval(function()
+{
+  window.requestAnimationFrame(draw);
+}, 1);
 
 init();
