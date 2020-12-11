@@ -2,7 +2,7 @@
 
 class Trace
 {
-    constructor(minX, minY, maxX, maxY, maxTraceLength, traceSize, traceColor, circleColor)
+    constructor(minX, minY, maxX, maxY, maxTraceLength, traceSize, speed, traceColor, circleColor)
     {
         this.ctx = ctx;
         this.minX = minX;
@@ -14,6 +14,7 @@ class Trace
         this.traceColor = traceColor;
         this.traceSize = traceSize;
         this.circleColor = circleColor;
+        this.speed = speed;
     }
 
     draw(ctx)
