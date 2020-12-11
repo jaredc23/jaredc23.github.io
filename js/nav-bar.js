@@ -11,13 +11,13 @@ function scrollFunction() {
       document.getElementById("logo").style.fontSize = "25px";
       document.getElementById("navBar").style.boxShadow = "0 20px 20px -2px rgba(0,0,0,.4)";
       document.getElementById("navBar-right").style.fontSize = "30px";
-      document.getElementById("nav-canvas").style.height = "110px";
+      document.getElementById("nav-canvas").style.height = "109px";
     } else {
       document.getElementById("navBar").style.padding = "70px 10px";
       document.getElementById("logo").style.fontSize = "60px";
       document.getElementById("navBar").style.boxShadow = "0 3px 3px -2px rgba(0,0,0,.2)";
       document.getElementById("navBar-right").style.fontSize = "50px";
-      document.getElementById("nav-canvas").style.height = "190px";
+      document.getElementById("nav-canvas").style.height = "189px";
     }
 };
 
@@ -61,7 +61,7 @@ function map(x, in_min, in_max, out_min, out_max) {
 
 var navWidth = document.getElementById('nav-canvas').width;
 var navHeight = document.getElementById('nav-canvas').height
-let t = new Trace(0,0,navWidth,navHeight,400,20,1,"#ffe99b", "#000000");
+let t = new Trace(0,0,navWidth,navHeight,400,10,1,"#FFDF00", "#000000");
 
 function draw() {
   if(document.hasFocus)
@@ -78,9 +78,7 @@ function draw() {
     ctx.lineWidth = 200;
     ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
     ctx.strokeStyle = 'rgba(0, 153, 255, 0.4)';
-    ctx.save();
-
-    //ctx.translate(0, map(parseInt(computedStyleObj.height), 110, 190, 40,0));
+    //ctx.save();
     
     ctx.clearRect(0,0,width, height);
     ctx.fillStyle = 'rgba(0, 0, 0, 1)';
@@ -88,8 +86,10 @@ function draw() {
 
     t.drawRandom(ctx);
 
-    ctx.translate(0.5, 0.5);
-    ctx.restore();
+    //ctx.restore();
+    t.calculations(ctx);
+
+    
   }
   //window.requestAnimationFrame(draw);
 }
