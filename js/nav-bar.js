@@ -61,7 +61,7 @@ function map(x, in_min, in_max, out_min, out_max) {
 
 var navWidth = document.getElementById('nav-canvas').width;
 var navHeight = document.getElementById('nav-canvas').height
-let t = new Trace(0,0,navWidth,navHeight,400,10,1,"#FFDF00", "#000000");
+let t = new Trace(0,0,navWidth,navHeight,-1,5,1,"#FFDF00", "#000000");
 
 function draw() {
   if(document.hasFocus)
@@ -75,20 +75,11 @@ function draw() {
     ctx.globalCompositeOperation = 'destination-over';
     ctx.clearRect(0, 0, width, height); // clear canvas
 
-    ctx.lineWidth = 200;
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
-    ctx.strokeStyle = 'rgba(0, 153, 255, 0.4)';
-    //ctx.save();
-    
-    ctx.clearRect(0,0,width, height);
-    ctx.fillStyle = 'rgba(0, 0, 0, 1)';
-    ctx.strokeStyle = 'rgba(0, 153, 255, 1)';
-
     t.drawRandom(ctx);
 
     //ctx.restore();
     t.calculations(ctx);
-
+    //t.calculateCollisions(ctx);
     
   }
   //window.requestAnimationFrame(draw);
