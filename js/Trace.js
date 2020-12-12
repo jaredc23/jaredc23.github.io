@@ -155,7 +155,6 @@ class Trace
         var checkPointY = this.getLastPoint().y + 13/7*(Math.sin(this.angle))*this.traceSize-height/2;///4 + 2*(Math.sin(this.angle))*9*this.traceSize/7 - height/2;
         if(!(checkPointX > this.minX && checkPointX < this.maxX && checkPointY > this.minY && checkPointY < this.maxY))
         {
-            console.log("Out of bounds");
             return true;
         }
         ctx.scale(1/devicePixelRatio, 1/devicePixelRatio);
