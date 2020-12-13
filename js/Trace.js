@@ -3,26 +3,31 @@
 class Trace
 {
     points = [];
-    minDistanceDir = 100;
+    minDistanceDir = 150;
     angle = 0;
     finished = false;
     collisionCounter = 0;
+    shouldBe = 0;
 
-    constructor(minX, minY, maxX, maxY, maxTraceLength, traceSize, speed, traceColor, circleColor)
+    constructor(startx, starty, minX, minY, maxX, maxY, maxTraceLength, traceSize, speed, traceColor, circleColor)
     {
         this.ctx = ctx;
-        this.minX = minX;
-        this.minY = minY;
-        this.maxX = maxX;
-        this.maxY = maxY;
+        this.minX = minX+maxX/30;
+        this.minY = minY+maxY/30;
+        this.maxX = maxX-maxX/30;
+        this.maxY = maxY-maxY/30;
         this.maxTraceLength = maxTraceLength;
         this.points = [];
-        this.points.push({x: 700,y: 100});
-        this.points.push({x: 700,y: 100});
+        this.startx = startx;
+        this.starty = starty;
+        this.points.push({x: startx,y: starty});
+        this.points.push({x: startx,y: starty});
         this.traceColor = traceColor;
         this.traceSize = traceSize;
         this.circleColor = circleColor;
         this.speed = speed;
+        this.angle = this.random(0,3)*Math.PI/2;
+        this.flag = false;
     }
 
     random(low, high) //Random number inclusive
@@ -40,15 +45,27 @@ class Trace
             return {x: this.points[this.points.length-1].x, y:this.points[this.points.length-1].y};
     }
 
-    calculateDistance()
+    calculateActualDistance()
     {
-        if(this.maxTraceLength < 0)
-            return -2;
         var sum = 0;
         for(var i = 0; i < this.points.length - 1; i++)
         {
             sum += Math.sqrt(Math.pow(this.points[i].x - this.points[i+1].x, 2) + Math.pow(this.points[i].y - this.points[i+1].y, 2))
         }
+        return sum;
+    }
+
+    calculateDistance()
+    {
+        var sum = 0;
+        for(var i = 0; i < this.points.length - 1; i++)
+        {
+            sum += Math.sqrt(Math.pow(this.points[i].x - this.points[i+1].x, 2) + Math.pow(this.points[i].y - this.points[i+1].y, 2))
+        }
+        if(this.maxTraceLength < 0 && !isNaN(sum))
+            return -2;
+        else if(isNaN(sum))
+            return NaN;
         return sum;
     }
 
@@ -93,6 +110,22 @@ class Trace
         }
         ctx.stroke();
 
+        if(this.calculateActualDistance() < 5)
+            this.shouldBe++;
+        else
+            this.shouldBe = 0;
+
+        if(isNaN(this.calculateDistance()) || (this.shouldBe > 500) || (this.points.length > 20 && this.calculateActualDistance() < 100 && this.finished == false))
+        {
+            /*
+            this.points = [];
+            var a = {x:this.random(this.maxX/20, this.maxX-this.maxX/20), y: this.random(this.maxX/20, this.maxY-this.maxY/20)};
+            this.points.push(a);
+            this.points.push(a);
+            console.log(this.points);
+            this.shouldBe = 0;
+            this.finished = false;*/ this.flag = true;
+        }
         
     }
 
@@ -108,6 +141,38 @@ class Trace
                 //if(this.calculateCollisions(ctx))
                  //   this.finished = true;
             }
+            else if(this.calculateDistance() >= this.maxTraceLength)
+                this.finished = true;
+        }
+        else
+        {
+            if(this.points.length>2)
+            {
+                if(this.points[0].x == this.points[1].x && this.points[0].y == this.points[1].y)
+                {
+                    this.points.shift();
+                }
+                
+                if(this.points.length>2)
+                {
+                    if(this.points[0].x == this.points[1].x)
+                    {
+                        var g = this.points.y
+                        this.points[0].y -= (Math.abs(this.points[0].y-this.points[1].y)/(this.points[0].y-this.points[1].y)).toFixed(0)*this.speed;
+                    }
+                    else
+                        this.points[0].x -= (Math.abs(this.points[0].x-this.points[1].x)/(this.points[0].x-this.points[1].x)).toFixed(0)*this.speed;
+                }
+                else
+                {
+                    var b = this.points[0];
+                    this.points = [];
+                    this.points.push({x: b.x, y: b.y});
+                    this.points.push({x: b.x, y: b.y});
+                    this.finished = false;
+                }
+            }
+            
         }
     }
 
@@ -118,10 +183,11 @@ class Trace
         var a = this.random(0,10);
         if((this.calculateDistanceCurrentSegment() > this.minDistanceDir && a == 5) || this.calculateCollisions(ctx))
         {
-            var originalAngle = this.angle;
-            this.angle = this.random(0,7)*Math.PI/4;
             
-            for(var i = 0; i < 9; i++)
+            var originalAngle = this.angle;
+            this.angle = this.random(0,3)*Math.PI/2;
+            
+            for(var i = 0; i < 4; i++)
             {
                 if(!this.calculateCollisions(ctx))
                 {
@@ -136,7 +202,7 @@ class Trace
                 else
                 {
                     this.collisionCounter++;
-                    this.angle += Math.PI/4;
+                    this.angle += Math.PI/2;
                     
                 }
             }
@@ -149,8 +215,8 @@ class Trace
 
     calculateCollisions(ctx)
     {
-        var width = this.speed + 9*(this.traceSize/10) + 17*Math.abs((this.traceSize/10)*Math.sin(this.angle));
-        var height = this.speed + 9*(this.traceSize/10) + 17*Math.abs((this.traceSize/10)*Math.cos(this.angle));
+        var width = this.speed + 8*(this.traceSize/10) + 17*Math.abs((this.traceSize/10)*Math.sin(this.angle));
+        var height = this.speed + 8*(this.traceSize/10) + 17*Math.abs((this.traceSize/10)*Math.cos(this.angle));
         var checkPointX = this.getLastPoint().x + 13/7*(Math.cos(this.angle))*this.traceSize-width/2;///4 - 2*(Math.cos(this.angle))*9*this.traceSize/7;
         var checkPointY = this.getLastPoint().y + 13/7*(Math.sin(this.angle))*this.traceSize-height/2;///4 + 2*(Math.sin(this.angle))*9*this.traceSize/7 - height/2;
         if(!(checkPointX > this.minX && checkPointX < this.maxX && checkPointY > this.minY && checkPointY < this.maxY))

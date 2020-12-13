@@ -59,9 +59,19 @@ function map(x, in_min, in_max, out_min, out_max) {
   return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
+function random(low, high) //Random number inclusive
+{
+  return Math.floor(Math.random() * (high+1)) + low;
+}
+
 var navWidth = document.getElementById('nav-canvas').width;
 var navHeight = document.getElementById('nav-canvas').height
-let t = new Trace(0,0,navWidth,navHeight,-1,5,1,"#FFDF00", "#000000");
+let traces = []
+for(var i = 0; i < 10; i++)
+{
+  traces.push(new Trace(random(navWidth/20, navWidth-navWidth/20), random(navHeight/20, navHeight-navHeight/20),0,0,navWidth,navHeight,-1,7,random(1,20)/20,"#FFDF00", "#000000"));
+}
+//let t = new Trace(700,100,0,0,navWidth,navHeight,-1,5,1,"#FFDF00", "#000000");
 
 function draw() {
   if(document.hasFocus)
@@ -75,10 +85,16 @@ function draw() {
     ctx.globalCompositeOperation = 'destination-over';
     ctx.clearRect(0, 0, width, height); // clear canvas
 
-    t.drawRandom(ctx);
+    for(var i = 0; i < traces.length; i++)
+      traces[i].drawRandom(ctx);
 
     //ctx.restore();
-    t.calculations(ctx);
+    for(var i = 0; i < traces.length; i++)
+      traces[i].calculations(ctx);
+
+    for(var i = 0; i < traces.length; i++)
+      if(traces[i].flag)
+        traces[i] = new Trace(random(navWidth/20, navWidth-navWidth/20), random(navHeight/20, navHeight-navHeight/20),0,0,navWidth,navHeight,-1,7,random(1,20)/20,"#FFDF00", "#000000");
     //t.calculateCollisions(ctx);
     
   }
