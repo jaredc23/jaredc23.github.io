@@ -66,8 +66,8 @@ function random(low, high) //Random number inclusive
 
 var navWidth = document.getElementById('nav-canvas').width/devicePixelRatio;
 var navHeight = document.getElementById('nav-canvas').height/devicePixelRatio;
-console.log(navWidth);
-console.log(navHeight);
+
+
 let traces = []
 for(var i = 0; i < 10; i++)
 {

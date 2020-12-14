@@ -117,6 +117,17 @@ class Trace
 
         if(isNaN(this.calculateDistance()) || (this.shouldBe > 500) || (this.points.length > 20 && this.calculateActualDistance() < 100 && this.finished == false))
         {
+            if(isNaN(this.points[0].y))
+                this.points[0].y = this.points[1].y;
+            else if(this.shouldBe > 500)
+            {
+                this.shouldBe = 0;
+                this.finished = false;
+            }
+            else
+            {
+                this.flag = true;
+            }
             /*
             this.points = [];
             var a = {x:this.random(this.maxX/20, this.maxX-this.maxX/20), y: this.random(this.maxX/20, this.maxY-this.maxY/20)};
@@ -124,7 +135,7 @@ class Trace
             this.points.push(a);
             console.log(this.points);
             this.shouldBe = 0;
-            this.finished = false;*/ this.flag = true;
+            this.finished = false;*/ 
         }
         
     }
