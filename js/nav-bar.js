@@ -68,20 +68,26 @@ var navWidth = document.getElementById('nav-canvas').width/devicePixelRatio;
 var navHeight = document.getElementById('nav-canvas').height/devicePixelRatio;
 
 
-let traces = []
-for(var i = 0; i < 10; i++)
-{
-  traces.push(new Trace(random(navWidth/20, navWidth-navWidth/20), random(navHeight/20, navHeight-navHeight/20),0,0,navWidth,navHeight,-1,7,random(1,20)/20,"#FFDF00", "#000000"));
-}
+//let traces = []
+//for(var i = 0; i < 10; i++)
+//{
+  //let t = /*traces.push(*/new TraceRunner(10,random(navWidth/20, navWidth-navWidth/20), random(navHeight/20, navHeight-navHeight/20),0,0,navWidth,navHeight,-1,7,random(1,20)/20,"#FFDF00", "#000000");
+  let t = new TraceRunner(10, 0 , 0, navWidth, navHeight);
+//}
 
 let points = [];
-for(var i = 0; i < 3; i++)
+for(var i = 0; i < 4; i++)
 {
-  points[i] = {x:random(navWidth/20, navWidth-navWidth/20), y: random(navHeight/20, navHeight-navHeight/20), r:random(0,Math.PI*2)};
+  points[i] = {x:random(navWidth/20, navWidth-navWidth/20)*5, y: random(navHeight/20, navHeight-navHeight/20)*5, r:random(0,360)};
 }
 let image = new Image();
-image.src = 'images/ic.png';
+image.src = 'https://image.flaticon.com/icons/png/512/17/17787.png';
 image.crossOrigin = "Anonymous";
+var flag = false;
+image.onload = function()
+{
+  flag = true;
+}
 //let t = new Trace(700,100,0,0,navWidth,navHeight,-1,5,1,"#FFDF00", "#000000");
 
 function draw() {
@@ -97,6 +103,15 @@ function draw() {
     ctx.clearRect(0, 0, width, height); // clear canvas
     ctx.save();
 
+    for(var i = 0; i <4; i++)
+    {
+      ctx.scale(.2,.2);
+      ctx.drawImage(image, points[i].x, points[i].y);
+      ctx.scale(5,5);
+    }
+    
+    t.draw(ctx);
+/*
     for(var i = 0; i < traces.length; i++)
       traces[i].drawRandom(ctx);
 
@@ -107,11 +122,8 @@ function draw() {
     for(var i = 0; i < traces.length; i++)
       if(traces[i].flag)
         traces[i] = new Trace(random(navWidth/20, navWidth-navWidth/20), random(navHeight/20, navHeight-navHeight/20),0,0,navWidth,navHeight,-1,7,random(1,20)/20,"#FFDF00", "#000000");
-
-    for(var i = 0; i <3; i++)
-    {
-      ctx.drawImage(image, points[i].x, points[i].y);
-    }    
+*/
+    if(flag)  
     //t.calculateCollisions(ctx);
     ctx.restore();
   }
