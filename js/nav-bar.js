@@ -73,6 +73,15 @@ for(var i = 0; i < 10; i++)
 {
   traces.push(new Trace(random(navWidth/20, navWidth-navWidth/20), random(navHeight/20, navHeight-navHeight/20),0,0,navWidth,navHeight,-1,7,random(1,20)/20,"#FFDF00", "#000000"));
 }
+
+let points = [];
+for(var i = 0; i < 3; i++)
+{
+  points[i] = {x:random(navWidth/20, navWidth-navWidth/20), y: random(navHeight/20, navHeight-navHeight/20), r:random(0,Math.PI*2)};
+}
+let image = new Image();
+image.src = 'images/ic.png';
+image.crossOrigin = "Anonymous";
 //let t = new Trace(700,100,0,0,navWidth,navHeight,-1,5,1,"#FFDF00", "#000000");
 
 function draw() {
@@ -86,6 +95,7 @@ function draw() {
 
     ctx.globalCompositeOperation = 'destination-over';
     ctx.clearRect(0, 0, width, height); // clear canvas
+    ctx.save();
 
     for(var i = 0; i < traces.length; i++)
       traces[i].drawRandom(ctx);
@@ -97,8 +107,13 @@ function draw() {
     for(var i = 0; i < traces.length; i++)
       if(traces[i].flag)
         traces[i] = new Trace(random(navWidth/20, navWidth-navWidth/20), random(navHeight/20, navHeight-navHeight/20),0,0,navWidth,navHeight,-1,7,random(1,20)/20,"#FFDF00", "#000000");
+
+    for(var i = 0; i <3; i++)
+    {
+      ctx.drawImage(image, points[i].x, points[i].y);
+    }    
     //t.calculateCollisions(ctx);
-    
+    ctx.restore();
   }
   //window.requestAnimationFrame(draw);
 }
