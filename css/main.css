@@ -9,7 +9,7 @@ html{
     --white: #FFFFFF;
     --black: #000000;
     --bgGrey: #F5F5F5;
-    --navBarColor: #414141;
+    --navBarColor: var(--darkGreen)/*#414141*/;
     --navTextColor: #F2F2F2;
     --navBarHover: #DBDBDB;
     --navBarSelect: var(--green);

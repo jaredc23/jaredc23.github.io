@@ -64,8 +64,10 @@ function random(low, high) //Random number inclusive
   return Math.floor(Math.random() * (high+1)) + low;
 }
 
-var navWidth = document.getElementById('nav-canvas').width;
-var navHeight = document.getElementById('nav-canvas').height
+var navWidth = document.getElementById('nav-canvas').width/devicePixelRatio;
+var navHeight = document.getElementById('nav-canvas').height/devicePixelRatio;
+console.log(navWidth);
+console.log(navHeight);
 let traces = []
 for(var i = 0; i < 10; i++)
 {
