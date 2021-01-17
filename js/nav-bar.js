@@ -40,6 +40,11 @@ const computedStyleObj = getComputedStyle(currCanvas);
 
 function init() {
   //window.requestAnimationFrame(draw);
+  var el = document.getElementById("titleScreen"); // or use $0 in chrome;
+do {
+    var styles = window.getComputedStyle(el);
+    console.log(styles.zIndex, el);
+} while(el.parentElement && (el = el.parentElement));
 }
 
 let canvas = document.getElementById("nav-canvas");

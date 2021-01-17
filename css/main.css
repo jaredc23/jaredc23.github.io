@@ -125,20 +125,24 @@ body{
     background-color: var(--sleekGrey);
     /*padding-bottom: 2500px;*/
     padding-top: 129px;
+    z-index: 0;
 }
 
 #titleScreen
 {
+    position: relative;
     height: 2500px;
     width: 100%;
-    z-index: -1;
+    z-index: 1;
 }
 
 #title-text
 {
+    position: relative;
     font-size: 70px;
     font-family: 'Anurati Regular';
     text-align: center;
+    z-index: 2;
 }
 
 @font-face {
