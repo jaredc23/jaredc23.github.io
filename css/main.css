@@ -9,10 +9,12 @@ html{
     --white: #FFFFFF;
     --black: #000000;
     --bgGrey: #F5F5F5;
-    --navBarColor: var(--darkGreen)/*#414141*/;
+    --sleekGrey: #414141;
+    --navBarColor: rgba(0,0,0,0);
     --navTextColor: #F2F2F2;
     --navBarHover: #DBDBDB;
-    --navBarSelect: var(--green);
+    --navBarSelect: #829cd3;
+    --titleColor: var(--green);
 }
 
 *{
@@ -41,13 +43,15 @@ body{
 {
     overflow: hidden;
     background-color: var(--navBarColor);
-    padding: 70px 10px;
+    opacity: 0%;
+    padding: 40px 10px;
     transition: 0.4s;
     position: fixed;
     width: 100%;
     top: 0;
-    z-index: 99;
-    box-shadow: 0 3px 3px -2px rgba(0,0,0,.2);
+    z-index: 1000;
+    box-shadow: 0 3px 3px -2px rgba(0,0,0,0);
+    border-style: none;
 }
 #navBar a{
     float: left;
@@ -100,7 +104,7 @@ body{
 #nav-canvas
 {
     width: 100%;
-    height: 189px;
+    height: 129px;
     z-index:-1;
     position: fixed; 
     top: 0px; 
@@ -109,4 +113,44 @@ body{
     object-fit: cover;
     filter: blur(4px);
 }
-/*---------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------Title Screen------------------------------------------------------*/
+#title
+{
+    width: 100%;
+    /*height: 2500px;*/
+    position: relative; 
+    top: 0px; 
+    left: 0px;
+    transition: 0.4s;
+    background-color: var(--sleekGrey);
+    /*padding-bottom: 2500px;*/
+    padding-top: 129px;
+}
+
+#titleScreen
+{
+    height: 2500px;
+    width: 100%;
+    z-index: -1;
+}
+
+#title-text
+{
+    font-size: 70px;
+    font-family: 'Anurati Regular';
+    text-align: center;
+}
+
+@font-face {
+    font-family: 'Anurati Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Anurati Regular'), url('Anurati-Regular.woff') format('woff');
+    }
+@font-face {
+    font-family: 'elixiaregular';
+    src: url('elixia-webfont.woff2') format('woff2'),
+            url('elixia-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
