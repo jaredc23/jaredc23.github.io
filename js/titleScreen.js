@@ -29,8 +29,8 @@ function tdraw()
 {
   if(document.hasFocus)
   {
-    ctx.width  = window.innerWidth;
-    ctx.height = window.innerHeight;
+    tctx.width  = window.innerWidth;
+    tctx.height = window.innerHeight;
 
     var twidth = document.getElementById('titleScreen').width/devicePixelRatio;
     var theight = document.getElementById('titleScreen').height/devicePixelRatio;
@@ -38,13 +38,13 @@ function tdraw()
     tctx.globalCompositeOperation = 'destination-over';
     tctx.clearRect(0, 0, twidth, theight); // clear canvas
     tctx.save();
-    tctx.fillStyle = '#000000';
+    tctx.fillStyle = '#FF0000';
     tctx.beginPath();
-    tctx.rect(0,0,700, 2500);
+    tctx.rect(0,0,100, theight);
     tctx.fill();
     tctx.stroke();
 
-    ctx.restore();
+    tctx.restore();
   }
 }
 
