@@ -5,6 +5,7 @@
     <title>Jared Cohen</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/fullPage.css" />
+    <script src="js/easings.min.js"></script>
     <script type="text/javascript" src="dat.gui-master/build/dat.gui.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;800&display=swap" rel="stylesheet">
@@ -16,26 +17,31 @@
   </head>
   <body class="main-theme">
     <script src="js/app.js"></script>
-    <a id = "home"></a>
+    <a id = "#home"></a>
     <!-------------------Navigation bar---------------------------->
     <div id = "navBar">
-      <a href = "#top" id = "logo">Jared Cohen</a>
+      <a href = "#intro" id = "logo" data-anchor="intro">Jared Cohen</a>
       <canvas id="nav-canvas"></canvas>
       <div id= "navBar-right">
-        <a id = "homeB" class = "active" href="#home" onclick="navBarOnClick(this.id)">Home</a>
+        <a id = "homeB" class = "active" href="#intro" onclick="navBarOnClick(this.id)">Home</a>
+        <a id = "experienceB" href="#experience" onclick="navBarOnClick(this.id)">Experience</a>
+        <a id = "projectsB" href="#projects" onclick="navBarOnClick(this.id)">Projects</a>
         <a id = "contactB" href="#contact" onclick="navBarOnClick(this.id)">Contact</a>
-        <a id = "aboutB" href="#about" onclick="navBarOnClick(this.id)">About</a>
       </div>
     </div>
     <div id="fullpage">
       <!------------------Title Screen------------------>
-      <div id = "title" class = "section">
+      <div id = "title" class = "section" data-anchor="intro">
         <h1 id = "title-text">JARED COHEN</h1>
         <canvas id= "titleScreen"></canvas>
       </div>
-      <div class = "section" style="padding-bottom: 100vh; background-color: blue;">
+      <div class = "section" data-anchor="contact" style="padding-bottom: 100vh; background-color: blue;">
       </div>
-      <div class = "section" style="padding-bottom: 100vh; background-color: red;">
+      <div class = "section" data-anchor="experience" style="padding-bottom: 100vh; background-color: red;">
+      </div>
+      <div class = "section"  data-anchor="arm" style="padding-bottom: 100vh; background-color: green;">
+      </div>
+      <div class = "section" data-anchor="projects" style="padding-bottom: 100vh; background-color: yellow;">
       </div>
     </div>
     <script>
@@ -43,10 +49,12 @@
         new fullpage('#fullpage', {
           //options here
           //licenseKey: 'YOUR_KEY_HERE',
-          autoScrolling:true,
+          anchors:['intro', 'experience', 'projects', 'arm', 'contact'],
+          scrollBar: true,
+          autoScrolling: true,
           setAllowScrolling: true,
           scrollHorizontally: false,
-          scrollBar: true
+          fitToSection: true,
         });
       }
       catch(err){}
