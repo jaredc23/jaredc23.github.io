@@ -64,6 +64,7 @@ body{
     font-size: 30px; 
     line-height: 25px;
     border-radius: 4px;
+    font-weight: bold;
 }
 #navBar #logo
 {
@@ -82,7 +83,7 @@ body{
     background-color: var(--navBarHover);
     color: var(--black);
 }
-#navBar a.active
+#navBar a.activeb
 {
     background-color: var(--navBarSelect);
     color: var(--black);

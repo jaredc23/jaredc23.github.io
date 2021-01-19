@@ -12,6 +12,7 @@ function navscrollFunction() {
     document.getElementById("navBar").style.boxShadow = "0 20px 20px -2px rgba(0,0,0,.4)";
     document.getElementById("navBar-right").style.fontSize = "30px";
     document.getElementById("nav-canvas").style.height = "109px";
+    document.getElementById("navBar").style.pointerEvents = "auto"
   } 
   else {
     document.getElementById("navBar").style.padding = "40px 10px";
@@ -21,7 +22,9 @@ function navscrollFunction() {
     document.getElementById("nav-canvas").style.height = "129px";
     document.getElementById("navBar").style.opacity = "0%"
     document.getElementById("navBar").style.backgroundColor = "rgba(0,0,0,0)";
+    document.getElementById("navBar").style.pointerEvents = "none"
   }
+
 };
 
 function random(low, high) //Random number inclusive
@@ -34,8 +37,6 @@ function navBarOnClick(id)
 {
   document.getElementsByClassName('activeb')[0].classList.toggle('activeb');
   document.getElementById(id).classList.toggle('activeb');
-  console.log(document.getElementsByClassName('active'))
-  console.log("hi")
 }
 
 const currCanvas = document.getElementById('nav-canvas'),
