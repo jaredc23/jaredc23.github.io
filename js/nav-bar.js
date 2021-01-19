@@ -3,8 +3,6 @@
 let a = true;
 
 //methods
-//fullpage_api.setAllowScrolling(false);
-
 
 function navscrollFunction() {
   if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
@@ -14,7 +12,8 @@ function navscrollFunction() {
     document.getElementById("navBar").style.boxShadow = "0 20px 20px -2px rgba(0,0,0,.4)";
     document.getElementById("navBar-right").style.fontSize = "30px";
     document.getElementById("nav-canvas").style.height = "109px";
-  } else {
+  } 
+  else {
     document.getElementById("navBar").style.padding = "40px 10px";
     document.getElementById("logo").style.fontSize = "60px";
     document.getElementById("navBar").style.boxShadow = "0 3px 3px -2px rgba(0,0,0,.0)";
@@ -33,8 +32,10 @@ function random(low, high) //Random number inclusive
 
 function navBarOnClick(id)
 {
-  document.getElementsByClassName('active')[0].classList.toggle('active');
-  document.getElementById(id).classList.toggle('active');
+  document.getElementsByClassName('activeb')[0].classList.toggle('activeb');
+  document.getElementById(id).classList.toggle('activeb');
+  console.log(document.getElementsByClassName('active'))
+  console.log("hi")
 }
 
 const currCanvas = document.getElementById('nav-canvas'),
