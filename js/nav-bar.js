@@ -2,10 +2,12 @@
 
 let a = true;
 
+let sthresh = 80
+
 //methods
 
 function navscrollFunction() {
-  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+  if (document.body.scrollTop > sthresh || document.documentElement.scrollTop > sthresh) {
     document.getElementById("navBar").style.padding = "20px 10px";
     document.getElementById("navBar").style.opacity = "75%";
     document.getElementById("logo").style.fontSize = "25px";
