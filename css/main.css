@@ -131,7 +131,7 @@ body{
 
 #titleScreen
 {
-    position: absolute;
+    position: relative;
     height: 100%;
     width: 100%;
     z-index: 3;
@@ -142,7 +142,7 @@ body{
     position: absolute;
     font-size: 100px;
     font-family: 'Anurati Regular';
-    top: 25%;
+    top: 45%;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
@@ -173,7 +173,7 @@ body{
     z-index: 2;
     width: 100%;
     height: 20%;
-    background-color: var(--sleekGrey);
+    /*background-color: var(--sleekGrey);*/
 }
 
 video {
@@ -184,11 +184,8 @@ video {
 
 #circuit_video
 {
-    filter: blur(0px);
+    filter: blur(4px);
     z-index: 1;
-    /*min-width: 100%;
-    min-height: 100%;
-    max-height: 100%;*/
     object-fit: fill;
     overflow: hidden;
 }
