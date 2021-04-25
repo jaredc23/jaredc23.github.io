@@ -147,7 +147,7 @@ body{
     margin-right: -50%;
     transform: translate(-50%, -50%);
     z-index: 2;
-    color: var(--white);
+    color: var(--black);
 }
 
 #subhead
@@ -184,7 +184,7 @@ video {
 
 #circuit_video
 {
-    filter: blur(4px);
+    filter: blur(0px);
     z-index: 1;
     object-fit: fill;
     overflow: hidden;
