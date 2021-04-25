@@ -13,6 +13,8 @@
     <script src="js/Trace.js"></script>
     <script src="js/traceRunner.js"></script>
     <script type="text/javascript" src="js/fullpage.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="jquery-textfill-master/dist/jquery.textfill.min.js"></script>
     <noscript>You need to enable JavaScript to view all the content of this site</noscript>
   </head>
   <body class="main-theme">
@@ -33,15 +35,19 @@
       <!------------------Title Screen------------------>
       <div id = "title" class = "section homeB" data-anchor="intro">
         <h1 id = "title-text">JARED COHEN</h1>
-        <canvas id= "titleScreen"></canvas>
+        <div id="title_subheader">
+          <h2 id="subhead">HELLO</h2>
+        </div>
+        <video id = "circuit_video" data-autoplay data-keepplaying muted loop><source src='images/test.mp4' type = 'video/mp4'/></video>
+        <!--<canvas id= "titleScreen"></canvas>-------->
       </div>
-      <div class = "section experienceB" data-anchor="experience" style="padding-bottom: 100vh; background-color: blue;">
+      <div class = "section experienceB" data-anchor="experience" style="background-color: blue;">
       </div>
-      <div class = "section projectsB" data-anchor="projects" style="padding-bottom: 100vh; background-color: red;">
+      <div class = "section projectsB" data-anchor="projects" style="background-color: red;">
       </div>
-      <div class = "section projectsB"  data-anchor="arm" style="padding-bottom: 100vh; background-color: green;">
+      <div class = "section projectsB"  data-anchor="arm" style="background-color: green;">
       </div>
-      <div class = "section contactB" data-anchor="contact" style="padding-bottom: 100vh; background-color: yellow;">
+      <div class = "section contactB" data-anchor="contact" style="background-color: yellow;">
       </div>
     </div>
     <script>

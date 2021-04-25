@@ -1,5 +1,5 @@
 'use strict'
-
+/*
 const titleCanvas = document.getElementById('titleScreen'),
       TcomputedStyleValueSpan = document.getElementById('computedstylevalue');
 const TcomputedStyleObj = getComputedStyle(titleCanvas);
@@ -52,3 +52,5 @@ setInterval(function()
 {
   window.requestAnimationFrame(tdraw);
 }, 1);
+
+*/
